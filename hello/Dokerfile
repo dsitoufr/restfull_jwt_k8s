@@ -1,0 +1,2 @@
+FROM alpine:3.1
+MAINTENER Roland Sitou <dsitoufr@yahoo.fr>
