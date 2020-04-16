@@ -8,6 +8,7 @@ pipeline {
     
     stages {
         stage('build') {
+            agent { docker { image 'golang' }}
             steps {
                  sh 'go version'
                 //create project directory
