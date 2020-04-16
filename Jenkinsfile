@@ -1,5 +1,12 @@
 pipeline {
     agent { docker { image 'golang' } }
+
+    environment {
+        HELLO='hello'
+        AUTH='auth'
+
+    }
+    
     stages {
         stage('build') {
             steps {
@@ -12,8 +19,7 @@ pipeline {
                 sh 'mkdir -p ${GOPATH}/src/github'
 
                 //copy files from jenkins workspace to project directory
-                sh 'rsync -ax "*tmp" ${WORKSPACE}/* ${GOPATH/src/github}
-                  ${GOPATH}/src/github/'
+                sh 'cp -r ${WORKSPACE}/*  ${GOPATH/src/github}'
 
                 //sh 'go build'
             }
