@@ -23,6 +23,8 @@ pipeline {
                
                 //sh 'cd ${HELLO}'
                 //sh 'go build'
+               /* clean up our workspace */
+                deleteDir() 
             }
         }
     }
