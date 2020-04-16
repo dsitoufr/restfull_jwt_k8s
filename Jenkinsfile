@@ -18,7 +18,7 @@ pipeline {
                 
 
                 //copy files from jenkins workspace to project directory
-                 //sh 'cp -r ${WORKSPACE}/*  ${GOPATH/src/github}'
+               sh 'cp -R ${WORKSPACE}/*  ${GOPATH/src/github}'
                echo "Hello Roland"
                
                 //sh 'cd ${HELLO}'
