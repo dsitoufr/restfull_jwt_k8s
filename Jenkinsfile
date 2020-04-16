@@ -1,6 +1,6 @@
 pipeline {
-   // agent { docker { image 'golang' } }
-
+   
+   agent {any}
     environment {
         HELLO='hello'
         AUTH='auth'
