@@ -1,6 +1,6 @@
 pipeline {
    
-   agent { docker { image 'golang' }}
+   agent none
    
     environment {
         HELLO='restfull_jwt_k8s/hello'
@@ -9,6 +9,7 @@ pipeline {
     
     stages {
         stage('build') {
+            agent { docker { image 'golang' }}
             steps {
                  sh 'go version'
                 //create project directory
