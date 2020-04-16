@@ -10,19 +10,15 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                 //sh 'go version'
+                 sh 'go version'
                 //create project directory
-                // sh 'cd ${GOPATH}/src'
-                //sh 'mkdir -p ${GOPATH}/src/github'
+                 sh 'cd ${GOPATH}/src'
+                 sh 'mkdir -p ${GOPATH}/src/github/restfull_jwt_k8s'
                
-                bash '''#!/bin/bash
-                 echo "hello world" 
-                 go version
-                 cd ${GOPATH}/src
-                '''
+                
 
                 //copy files from jenkins workspace to project directory
-               // sh 'cp -r ${WORKSPACE}/restfull_jwt_k8s  ${GOPATH/src/github}'
+                 sh 'cp -r ${WORKSPACE}/restfull_jwt_k8s/*  ${GOPATH/src/github}/restfull_jwt_k8s/'
                 //sh 'cd ${HELLO}'
                 //sh 'go build'
             }
