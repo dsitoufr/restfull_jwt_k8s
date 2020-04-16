@@ -15,13 +15,14 @@ pipeline {
                 //create project directory
                  sh 'cd ${GOPATH}/src'
                  sh 'mkdir -p ${GOPATH}/src/github'
+                 sh 'go env'
                
                 
 
                 //copy files from jenkins workspace to project directory
                //sh 'cp -r ${WORKSPACE}/*  ${GOPATH/src/github}'
                 //sh 'ls  ${WORKSPACE}'
-               sh 'ls  ${GOPATH}/src/github}'
+               //sh 'ls  ${GOPATH}/src/github}'
                
                 //sh 'cd ${HELLO}'
                 //sh 'go build'
