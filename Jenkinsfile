@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker { image 'golang-1.14.1' } }
+    agent { docker { image 'golang' } }
 
     environment {
         HELLO='hello'
