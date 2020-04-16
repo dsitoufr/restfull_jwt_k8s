@@ -3,7 +3,7 @@ pipeline {
    agent { docker { image 'golang' }}
    
     environment {
-        HELLO='hello'
+        HELLO='restfull_jwt_k8s/hello'
         AUTH='auth'
     }
     
@@ -17,8 +17,8 @@ pipeline {
 
                 //copy files from jenkins workspace to project directory
                 sh 'cp -r ${WORKSPACE}/* ${GOPATH/src/github}'
-
-                //sh 'go build'
+                sh 'cd ${HELLO}'
+                sh 'go build'
             }
         }
     }
