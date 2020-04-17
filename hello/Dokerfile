@@ -1,2 +1,4 @@
 FROM alpine:3.1
-MAINTENER Roland Sitou <dsitoufr@yahoo.fr>
+MAINTAINER Roland SITOU <dsitoufr@yahoo.fr>
+ADD hello /usr/bin/hello
+ENTRYPOINT ["hello"]
