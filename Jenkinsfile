@@ -1,4 +1,5 @@
 pipeline {
+  agent any
   environment {
     PROJECT = "REPLACE_WITH_YOUR_PROJECT_ID"
     APP_NAME = "gceme"
