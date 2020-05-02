@@ -21,8 +21,10 @@ spec:
     stage('Build') {
       steps {
         container('golang') {
+          sh """
           ln -s `pwd` /go/src/restfull_jwt_k8s
           cd /go/src/restfull_jwt_k8s
+          """
         }
       }
     }
