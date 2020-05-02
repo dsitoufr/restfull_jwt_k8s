@@ -4,6 +4,7 @@ pipeline {
         HELLO='restfull_jwt_k8s/hello'
         AUTH='auth'
     }
+   
     stages {
         stage('build') {
             //agent { docker { image 'golang' }}
