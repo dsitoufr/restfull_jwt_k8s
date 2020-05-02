@@ -53,7 +53,6 @@ func main() {
                                 if err != nil {
                                      log.Fatal(err)
                                  }   
-
                            case  sig := <- signalChan:  
                            // Exit when cath signal
                            log.Printf("Get Os signal : %v. Exiting program...!", sig)
