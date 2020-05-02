@@ -9,7 +9,7 @@ pipeline {
     JENKINS_CRED = "${PROJECT}"
   }
   stages {
-      stage('Tests) {
+      stage('Tests') {
           steps {
               sh 'echo je ms suis...!'
           }
