@@ -21,13 +21,13 @@ spec:
     stage('Install dependencies'){
         steps {
             container('golang') {
-                sh """
+                ssh """
                     go version
                     go get -u github.com/rs/cors
                     go get -u github.com/braintree/manners 
                     go get -u github.com/dgrijalva/jwt-go 
                     go get -u github.com/gorilla/mux
-                    go get -u golang.org/x/crypto
+                    go get -u golang.org/x/crypto/bcrypt
                 """
             }
         }
