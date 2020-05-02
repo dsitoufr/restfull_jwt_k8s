@@ -1,7 +1,7 @@
 package main
 
 import (
-    "github/restfull_jwt_k8s/handlers"
+    "restfull_jwt_k8s/handlers"
     "flag"
     "log"
     "net/http"
