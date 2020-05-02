@@ -13,6 +13,11 @@ pipeline {
       stage('Tests') {
           steps {
               sh 'echo je ms suis...!'
+            container('golang') {
+               sh """
+                  go version
+                  """
+            }
           }
       }
   }
