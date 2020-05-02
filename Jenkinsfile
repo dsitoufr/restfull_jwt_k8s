@@ -24,6 +24,7 @@ spec:
           sh """
           ln -s `pwd` /go/src/restfull_jwt_k8s
           cd /go/src/restfull_jwt_k8s/hello
+          go get github.com/rs/cors
           go test
           """
         }
