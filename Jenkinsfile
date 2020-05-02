@@ -21,7 +21,7 @@ spec:
     stage('Install dependencies'){
         steps {
             container('golang') {
-                ssh """
+                sh """
                     go version
                     go get -u github.com/rs/cors
                     go get -u github.com/braintree/manners 
