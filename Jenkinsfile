@@ -14,17 +14,40 @@ spec:
     command:
     - cat
     tty: true
+  - name: gcloud
+    image: gcr.io/cloud-builders/gcloud
+    command:
+    - cat
+    tty: true
+  -name: kubectl
+   image: gcr.io/cloud-builders/kubectl
+   command:
+   - cat
+   tty: true
 """
     }
   }
   stages {
-    stage('Build') {
+    stage('Install dependencies'){
+        steps {
+            container('golang') {
+                ssh """
+                    go version
+                    go get -u github.com/rs/cors
+                    go get -u github.com/braintree/manners 
+                    go get -u github.com/dgrijalva/jwt-go 
+                    go get -u github.com/gorilla/mux
+                    go get -u golang.org/x/crypto
+                """
+            }
+        }
+    }
+    stage('Unit tests') {
       steps {
         container('golang') {
           sh """
           ln -s `pwd` /go/src/restfull_jwt_k8s
           cd /go/src/restfull_jwt_k8s/hello
-          go get github.com/rs/cors
           go test
           """
         }
