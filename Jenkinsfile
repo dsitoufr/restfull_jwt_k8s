@@ -39,7 +39,7 @@ spec:
     }
   }
   stages {
-    stage('Install dependencies'){
+    stage('Install dependencies  and unit tests'){
         steps {
             container('golang') {
                 sh """
@@ -49,22 +49,15 @@ spec:
                     go get -u github.com/dgrijalva/jwt-go 
                     go get -u github.com/gorilla/mux
                     go get -u golang.org/x/crypto/bcrypt
+                    
+                   ln -s `pwd` /go/src/restfull_jwt_k8s
+                   cd /go/src/restfull_jwt_k8s/hello
+                   go test
                 """
             }
         }
     }
-    stage('Unit tests') {
-      steps {
-        container('golang') {
-          sh """
-          ln -s `pwd` /go/src/restfull_jwt_k8s
-          cd /go/src/restfull_jwt_k8s/hello
-          go test
-          """
-        }
-      }
-    }
-   
+    
     stage('Build Golang') {
       steps {
          sh 'echo build golang'
