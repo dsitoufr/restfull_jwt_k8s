@@ -64,6 +64,10 @@ spec:
         }
       }
     }
+   
+    stage('Build Golang') {
+      sh 'echo build golang'
+    }
     
   }
 }
