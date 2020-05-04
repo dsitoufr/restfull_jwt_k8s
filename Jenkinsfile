@@ -63,12 +63,7 @@ spec:
           """
         }
       }
-      
-      stage('Build Go') {
-        sh 'echo building Go'
-      }
     }
-    
     
   }
 }
