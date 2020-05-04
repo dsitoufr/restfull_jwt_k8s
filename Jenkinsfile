@@ -64,5 +64,13 @@ spec:
         }
       }
     }
+    
+    stage('Build Go') {
+        sh 'echo building Go'
+    }
+    
+    stage('Build Docker Image') {
+        sh 'echo building docker image'
+    }
   }
 }
