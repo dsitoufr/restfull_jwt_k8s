@@ -66,7 +66,9 @@ spec:
     }
    
     stage('Build Golang') {
-      sh 'echo build golang'
+      steps {
+         sh 'echo build golang'
+      }
     }
     
   }
