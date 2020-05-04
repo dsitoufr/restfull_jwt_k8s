@@ -71,5 +71,10 @@ spec:
       }
     }
     
+    stage('Build and push docker image with registry') {
+      steps {
+         sh 'echo build docker'
+      }
+    }
   }
 }
