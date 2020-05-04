@@ -6,7 +6,7 @@ import(
     "time"
     "github.com/dgrijalva/jwt-go"
     "golang.org/x/crypto/bcrypt"
-    "github/restfull_jwt_k8s/user"
+    "restfull_jwt_k8s/user"
     "log"
 )
 
