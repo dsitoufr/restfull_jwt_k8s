@@ -61,7 +61,7 @@ spec:
       steps {
         container('kubectl') {
            sh """
-              kubectl cluster-info
+              kubectl get pods
            """
         }
       }
@@ -73,9 +73,15 @@ spec:
       }
     }
     
-    stage('Build and push docker image with registry') {
+    stage('Build docker image and push to docker hub') {
       steps {
          sh 'echo build docker'
+      }
+    }
+    
+    stage('Deploy container image to k8s') {
+      steps {
+         sh 'echo deploying to k8s'
       }
     }
   }
