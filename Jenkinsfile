@@ -57,6 +57,15 @@ spec:
             }
         }
     }
+    stage('K8s version') {
+      steps {
+        container('kubectl') {
+           sh """
+              kubectl cluster-info
+           """
+        }
+      }
+    }
     
     stage('Build Golang') {
       steps {
