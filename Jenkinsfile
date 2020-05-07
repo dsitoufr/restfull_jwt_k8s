@@ -66,7 +66,12 @@ spec:
              dir '.'
              registryUrl 'https://regiqtry.hub.docker.com/'
              registryCredentialsId 'docker-creds'
-            }
+         }
+      steps {
+        sh """
+             echo 'image builded'
+           """
+      }
       
     }
     
