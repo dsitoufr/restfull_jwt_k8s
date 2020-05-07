@@ -43,6 +43,7 @@ spec:
         steps {
             container('golang') {
                 sh """
+                    echo 'building go sources'
                     go version
                     go get -u github.com/rs/cors
                     go get -u github.com/braintree/manners 
@@ -50,24 +51,20 @@ spec:
                     go get -u github.com/gorilla/mux
                     go get -u golang.org/x/crypto/bcrypt
                     
-                   ln -s `pwd` /go/src/restfull_jwt_k8s
-                   cd /go/src/restfull_jwt_k8s/hello
-                   go test
+                    ln -s `pwd` /go/src/restfull_jwt_k8s
+                    cd /go/src/restfull_jwt_k8s/hello
+                    go build .
                 """
             }
         }
     }
     
     
-    stage('Build Golang') {
+    stage('Build and push to docker registry') {
       steps {
-        container('golang') {
-         sh """
-           echo 'building golang'
-           cd /go/src/restfull_jwt_k8s/hello
-           go build .
+          ssh """
+              echo 'Build and push to docker registry'
           """
-        }
       }
     }
     
