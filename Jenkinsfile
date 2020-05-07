@@ -62,11 +62,13 @@ spec:
     
     stage('Build and push docker image') {
          agent { 
+           dockerfile {
                 filename 'Dockerfile'
                 registryUrl 'https://regiqtry.hub.docker.com/'
                 registryCredentialsId 'docker-creds'
+            }
           }
-      steps {
+        steps {
          sh """
            echo 'finish build'
          """
