@@ -61,12 +61,11 @@ spec:
     
     
     stage('Build and push docker image') {
+      agent { dockerfile true }
       steps {
           sh """
-              echo 'Build and push docker image'
-              cd ./hello
-               app = docker.build('dsitoufr/restfull_jwt_k8s','./hello')
-              """
+             echo 'docker image builded'
+             """
        }
     }
     
