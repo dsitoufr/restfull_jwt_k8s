@@ -61,19 +61,16 @@ spec:
     
     
     stage('Build and push docker image') {
-      agent { dockerfile true }
-      steps {
-          sh """
-             echo 'docker image builded'
-             """
-       }
+      agent { 
+             filename 'Dockerfile'
+             dir '.'
+             registryUrl 'https://regiqtry.hub.docker.com/'
+             registryCredentialsId 'docker-creds'
+            }
+      
     }
     
     
-    stage('Deploy container image to k8s') {
-      steps {
-         sh 'echo deploying to k8s'
-      }
-    }
+    
   }
 }
