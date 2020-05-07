@@ -67,6 +67,7 @@ spec:
               cd /go/src/restfull_jwt_k8s/hello
               ls -l .
               """
+       }
     }
     
     
