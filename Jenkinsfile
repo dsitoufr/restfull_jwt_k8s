@@ -57,19 +57,16 @@ spec:
             }
         }
     }
-    stage('K8s version') {
-      steps {
-        container('kubectl') {
-           sh """
-              kubectl get pods
-           """
-        }
-      }
-    }
+    
     
     stage('Build Golang') {
       steps {
-         sh 'echo build golang'
+         sh """
+           echo 'building golang'
+           cd /go/src/restfull_jwt_k8s/hello
+           go build .
+          """
+        
       }
     }
     
