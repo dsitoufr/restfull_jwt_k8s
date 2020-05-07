@@ -71,15 +71,6 @@ spec:
       }
     }
     
-    stage('Build docker image and push to docker hub') {
-      steps {
-         sh """
-         echo 'build docker'
-         cd /go/src/restfull_jwt_k8s/hello
-         app = docker.build('dsitoufr/restfull_jwt_k8s','./hello')
-         """
-      }
-    }
     
     stage('Deploy container image to k8s') {
       steps {
