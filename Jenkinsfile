@@ -64,6 +64,7 @@ spec:
       steps {
           sh """
               echo 'Build and push docker image'
+              ln -s `pwd` /go/src/restfull_jwt_k8s
               cd /go/src/restfull_jwt_k8s/hello
               ls -l .
               """
