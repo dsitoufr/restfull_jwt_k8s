@@ -61,12 +61,13 @@ spec:
     
     stage('Build Golang') {
       steps {
+        container('golang') {
          sh """
            echo 'building golang'
            cd /go/src/restfull_jwt_k8s/hello
            go build .
           """
-        
+        }
       }
     }
     
