@@ -63,7 +63,6 @@ spec:
     stage('Build and push docker image') {
          agent { 
                 filename 'Dockerfile'
-                dir '.'
                 registryUrl 'https://regiqtry.hub.docker.com/'
                 registryCredentialsId 'docker-creds'
           }
