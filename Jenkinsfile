@@ -60,12 +60,13 @@ spec:
     }
     
     
-    stage('Build and push to docker registry') {
+    stage('Build and push docker image') {
       steps {
-          ssh """
-              echo 'Build and push to docker registry'
-          """
-      }
+          sh """
+              echo 'Build and push docker image'
+              cd /go/src/restfull_jwt_k8s/hello
+              ls -l .
+              """
     }
     
     
