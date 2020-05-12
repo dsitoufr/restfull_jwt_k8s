@@ -25,11 +25,6 @@ spec:
     command:
     - cat
     tty: true
-  - name: gcloud
-    image: gcr.io/cloud-builders/gcloud
-    command:
-    - cat
-    tty: true
   - name: kubectl
     image: gcr.io/cloud-builders/kubectl
     command:
@@ -38,11 +33,8 @@ spec:
   - name: kaniko
     image: gcr.io/kaniko-project/executor
     command:
-    - /busybox/cat
+    - cat
     tty: true
-    volumeMounts:
-    - name: jenkins-docker-cfg
-      mountPath: /kaniko/.docker
 """
     }
   }
