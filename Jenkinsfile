@@ -32,8 +32,6 @@ spec:
     tty: true
   - name: kaniko
     image: gcr.io/kaniko-project/executor
-    command:
-    - cat
     tty: true
 """
     }
