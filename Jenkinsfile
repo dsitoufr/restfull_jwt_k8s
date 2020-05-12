@@ -35,6 +35,11 @@ spec:
     command:
     - cat
     tty: true
+  - name: kaniko
+    image: gcr.io/kaniko-project/executor
+    command:
+    - /busybox/cat
+    tty: true
 """
     }
   }
