@@ -1,3 +1,35 @@
+Requirements:
+
+    Standard Kubernetes cluster 
+    Kubernetes Secret/Credentials
+    A build context
+    Docker config file: Config.json
+    Dockerfile
+
+  Kubernetes Secret/Credentials
+  =============================
+  gcloud init
+gcloud auth application-default login
+ ==>
+ Credentials saved to file: [/home/vagrant/.config/gcloud/application_default_credentials.json]
+
+ cp -p /home/vagrant/.config/gcloud/application_default_credentials.json   kaniko-secret
+
+kubectl --namespace ns-kaniko create secret generic aws-creds --from-file=kaniko-secret.json
+cp -p $HOME/.docker/config.json  .
+kubectl --namespace ns-kaniko create configmap config-json --from-file=config.json
+
+kubectl --namespace ns-kaniko create configmap build-context --from-file=Dockerfile
+
+
+++++ Cours
+https://codeghar.com/blog/build-container-images-in-kubernetes-with-kaniko.html
+https://hub.docker.com/r/csanchez/kaniko
+https://support.cloudbees.com/hc/en-us/articles/360031223512-What-you-need-to-know-when-using-Kaniko-from-Kubernetes-Jenkins-Agents
+https://github.com/GoogleContainerTools/kaniko
+
+
+Save:
 pipeline {
   
   environment {
@@ -10,27 +42,54 @@ pipeline {
     JENKINS_CRED = "${PROJECT}"
   }
   
-  kubernetes {
-      label 'example-kaniko-volumes'
+  agent {
+    kubernetes {
       yaml """
+apiVersion: v1
 kind: Pod
 metadata:
-  name: kaniko
+  labels:
+    some-label: some-label-value
 spec:
   containers:
-  - name: jnlp
-    workingDir: /home/jenkins
-  - name: kaniko
-    workingDir: /home/jenkins
-    image: gcr.io/kaniko-project/executor:debug
-    imagePullPolicy: Always
+  - name: golang
+    image: golang:1.10
     command:
-    - /busybox/cat
+    - cat
+    tty: true
+  - name: gcloud
+    image: gcr.io/cloud-builders/gcloud
+    command:
+    - cat
+    tty: true
+  - name: kubectl
+    image: gcr.io/cloud-builders/kubectl
+    command:
+    - cat
     tty: true
 """
     }
   }
   stages {
+    stage('Install dependencies  and unit tests'){
+        steps {
+            container('golang') {
+                sh """
+                    echo 'building go sources'
+                    go version
+                    go get -u github.com/rs/cors
+                    go get -u github.com/braintree/manners 
+                    go get -u github.com/dgrijalva/jwt-go 
+                    go get -u github.com/gorilla/mux
+                    go get -u golang.org/x/crypto/bcrypt
+                    
+                    ln -s `pwd` /go/src/restfull_jwt_k8s
+                    cd /go/src/restfull_jwt_k8s/hello
+                    go build .
+                """
+            }
+        }
+    }
     stage('New stage') {
       steps {
          sh """
