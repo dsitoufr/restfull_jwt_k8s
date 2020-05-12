@@ -1,35 +1,3 @@
-Requirements:
-
-    Standard Kubernetes cluster 
-    Kubernetes Secret/Credentials
-    A build context
-    Docker config file: Config.json
-    Dockerfile
-
-  Kubernetes Secret/Credentials
-  =============================
-  gcloud init
-gcloud auth application-default login
- ==>
- Credentials saved to file: [/home/vagrant/.config/gcloud/application_default_credentials.json]
-
- cp -p /home/vagrant/.config/gcloud/application_default_credentials.json   kaniko-secret
-
-kubectl --namespace ns-kaniko create secret generic aws-creds --from-file=kaniko-secret.json
-cp -p $HOME/.docker/config.json  .
-kubectl --namespace ns-kaniko create configmap config-json --from-file=config.json
-
-kubectl --namespace ns-kaniko create configmap build-context --from-file=Dockerfile
-
-
-++++ Cours
-https://codeghar.com/blog/build-container-images-in-kubernetes-with-kaniko.html
-https://hub.docker.com/r/csanchez/kaniko
-https://support.cloudbees.com/hc/en-us/articles/360031223512-What-you-need-to-know-when-using-Kaniko-from-Kubernetes-Jenkins-Agents
-https://github.com/GoogleContainerTools/kaniko
-
-
-Save:
 pipeline {
   
   environment {
