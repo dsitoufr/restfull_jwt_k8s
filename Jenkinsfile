@@ -60,7 +60,7 @@ spec:
     }
     stage('New stage') {
       steps {
-         ssh """
+         sh """
               echo 'new steps'
              """
       }
