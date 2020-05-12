@@ -35,10 +35,6 @@ spec:
     command:
     - cat
     tty: true
-   - name: kaniko
-     image: gcr.io/kaniko-project/executor:latest
-     workingDir: /home/jenkins
-     imagePullPolicy: Always
 """
     }
   }
