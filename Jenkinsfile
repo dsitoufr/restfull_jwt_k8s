@@ -10,52 +10,27 @@ pipeline {
     JENKINS_CRED = "${PROJECT}"
   }
   
-  agent {
-    kubernetes {
+  kubernetes {
+      label 'example-kaniko-volumes'
       yaml """
-apiVersion: v1
 kind: Pod
 metadata:
-  labels:
-    some-label: some-label-value
+  name: kaniko
 spec:
   containers:
-  - name: golang
-    image: golang:1.10
-    command:
-    - cat
-    tty: true
-  - name: kubectl
-    image: gcr.io/cloud-builders/kubectl
-    command:
-    - cat
-    tty: true
+  - name: jnlp
+    workingDir: /home/jenkins
   - name: kaniko
-    image: gcr.io/kaniko-project/executor
+    workingDir: /home/jenkins
+    image: gcr.io/kaniko-project/executor:debug
+    imagePullPolicy: Always
+    command:
+    - /busybox/cat
     tty: true
 """
     }
   }
   stages {
-    stage('Install dependencies  and unit tests'){
-        steps {
-            container('golang') {
-                sh """
-                    echo 'building go sources'
-                    go version
-                    go get -u github.com/rs/cors
-                    go get -u github.com/braintree/manners 
-                    go get -u github.com/dgrijalva/jwt-go 
-                    go get -u github.com/gorilla/mux
-                    go get -u golang.org/x/crypto/bcrypt
-                    
-                    ln -s `pwd` /go/src/restfull_jwt_k8s
-                    cd /go/src/restfull_jwt_k8s/hello
-                    go build .
-                """
-            }
-        }
-    }
     stage('New stage') {
       steps {
          sh """
