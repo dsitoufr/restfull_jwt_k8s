@@ -30,10 +30,11 @@ spec:
     command:
     - cat
     tty: true
-  - name: kubectl
-    image: gcr.io/cloud-builders/kubectl
+  - name: kaniko
+    image: gcr.io/kaniko-project/executor
+    imagePullPolicy: Always
     command:
-    - cat
+    - /busybox/cat
     tty: true
 """
     }
