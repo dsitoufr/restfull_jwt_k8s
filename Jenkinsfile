@@ -58,24 +58,13 @@ spec:
             }
         }
     }
-    
-    
-    stage('Build and push docker image') {
-         agent { 
-           dockerfile {
-                filename 'Dockerfile'
-                registryUrl 'https://regiqtry.hub.docker.com/'
-                registryCredentialsId 'docker-creds'
-            }
-          }
-        steps {
-         sh """
-           echo 'finish build'
-         """
+    stage('New stage') {
+      steps {
+         ssh """
+              echo 'new steps'
+             """
       }
     }
-    
-    
     
   }
 }
