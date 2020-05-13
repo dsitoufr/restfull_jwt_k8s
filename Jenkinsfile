@@ -8,6 +8,7 @@ pipeline {
     CLUSTER_ZONE = "us-east1-d"
     IMAGE_TAG = "eu.gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
     JENKINS_CRED = "${PROJECT}"
+    CLOUDSDK_CORE_PROJECT="my-fisrt-proj"
   }
   
   agent {
