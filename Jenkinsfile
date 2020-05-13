@@ -62,7 +62,9 @@ spec:
     stage('Build and push image to google container registry') {
       steps {
         container('gcloud') {
-           sh "PYTHONUNBUFFERED=1 gcloud builds submit -t ${IMAGE_TAG} ."
+           sh """
+               config set project ${PROJECT}
+              """
         }
       }
     }
