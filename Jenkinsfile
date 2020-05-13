@@ -6,7 +6,7 @@ pipeline {
     FE_SVC_NAME = "${APP_NAME}-frontend"
     CLUSTER = "microk8s-cluster"
     CLUSTER_ZONE = "us-east1-d"
-    IMAGE_TAG = "eu.gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
+    IMAGE_TAG = "eu.gcr.io/my-fisrt-proj/mykaniko-k8s"
     JENKINS_CRED = "${PROJECT}"
     CLOUDSDK_CORE_PROJECT="my-fisrt-proj"
     ACCOUNT = "dsitoufr@gmail.com"
