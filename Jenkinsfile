@@ -1,12 +1,12 @@
 pipeline {
   
   environment {
-    PROJECT = "REPLACE_WITH_YOUR_PROJECT_ID"
-    APP_NAME = "gceme"
+    PROJECT = "my-fisrt-proj"
+    APP_NAME = "myhello"
     FE_SVC_NAME = "${APP_NAME}-frontend"
     CLUSTER = "jenkins-cd"
     CLUSTER_ZONE = "us-east1-d"
-    IMAGE_TAG = "gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
+    IMAGE_TAG = "eu.gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
     JENKINS_CRED = "${PROJECT}"
   }
   
@@ -58,11 +58,11 @@ spec:
             }
         }
     }
-    stage('New stage') {
+    stage('Build and push image to google container registry') {
       steps {
-         sh """
-              echo 'new steps'
-             """
+        container('gcloud') {
+           sh "PYTHONUNBUFFERED=1 gcloud builds submit -t ${IMAGE_TAG} ."
+        }
       }
     }
     
