@@ -64,8 +64,8 @@ spec:
       steps {
         container('gcloud') {
            sh """
-               config set project ${PROJECT}
-               config set account ${ACCOUNT}
+               gcloud config set project ${PROJECT}
+               gcloud config set account ${ACCOUNT}
                PYTHONUNBUFFERED=1 gcloud builds submit -t ${IMAGE_TAG} .
               """
         }
