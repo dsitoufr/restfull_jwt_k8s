@@ -4,7 +4,7 @@ pipeline {
     PROJECT = "my-fisrt-proj"
     APP_NAME = "myhello"
     FE_SVC_NAME = "${APP_NAME}-frontend"
-    CLUSTER = "jenkins-cd"
+    CLUSTER = "microk8s-cluster"
     CLUSTER_ZONE = "us-east1-d"
     IMAGE_TAG = "eu.gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
     JENKINS_CRED = "${PROJECT}"
@@ -66,6 +66,7 @@ spec:
            sh """
                config set project ${PROJECT}
                config set account ${ACCOUNT}
+               PYTHONUNBUFFERED=1 gcloud builds submit -t ${IMAGE_TAG} .
               """
         }
       }
